@@ -3,7 +3,7 @@ const axios = require("axios");
 const {v4} = require('uuid');
 
 const configValidation = () => {
-  const config = strapi.config.get('plugin.strapi-plugin-sso')
+  const config = strapi.config.get('plugin.strapi-sso-plugin')
   if (config['COGNITO_OAUTH_CLIENT_ID'] && config['COGNITO_OAUTH_CLIENT_SECRET'] && config['COGNITO_OAUTH_DOMAIN']) {
     return config
   }
@@ -39,8 +39,8 @@ async function cognitoSignInCallback(ctx) {
   const config = configValidation()
   const userService = strapi.service('admin::user')
   const tokenService = strapi.service('admin::token')
-  const oauthService = strapi.plugin('strapi-plugin-sso').service('oauth')
-  const roleService = strapi.plugin('strapi-plugin-sso').service('role')
+  const oauthService = strapi.plugin('strapi-sso-plugin').service('oauth')
+  const roleService = strapi.plugin('strapi-sso-plugin').service('role')
 
   if (!ctx.query.code) {
     return ctx.send(oauthService.renderSignUpError(`code Not Found`))

@@ -4,7 +4,7 @@ const { v4 } = require('uuid');
 let id_token;
 
 const configValidation = () => {
-  const config = strapi.config.get('plugin.strapi-plugin-sso')
+  const config = strapi.config.get('plugin.strapi-sso-plugin')
   if (config['OIDC_CLIENT_ID'] && config['OIDC_CLIENT_SECRET']
       && config['OIDC_REDIRECT_URI'] && config['OIDC_SCOPES']
       && config['OIDC_TOKEN_ENDPOINT'] && config['OIDC_USER_INFO_ENDPOINT']
@@ -31,8 +31,8 @@ const oidcSignInCallback = async (ctx) => {
   const httpClient = axios.create()
   const userService = strapi.service('admin::user')
   const tokenService = strapi.service('admin::token')
-  const oauthService = strapi.plugin('strapi-plugin-sso').service('oauth')
-  const roleService = strapi.plugin('strapi-plugin-sso').service('role')
+  const oauthService = strapi.plugin('strapi-sso-plugin').service('oauth')
+  const roleService = strapi.plugin('strapi-sso-plugin').service('role')
 
   if (!ctx.query.code) {
     return ctx.send(oauthService.renderSignUpError(`code Not Found`))
@@ -116,8 +116,8 @@ const oidcSignInCallback = async (ctx) => {
 const oidcLogout = async (ctx) => {
   try {
     const { OIDC_SCOPES, OIDC_LOGOUT_ENDPOINT } = configValidation();
-    let OIDC_REDIRECT_URI = "http://localhost:1337/strapi-plugin-sso/oidc/logout/callback";
-    // const redirect_uri = "/strapi-plugin-sso/oidc11111"
+    let OIDC_REDIRECT_URI = "http://localhost:1337/strapi-sso-plugin/oidc/logout/callback";
+    // const redirect_uri = "/strapi-sso-plugin/oidc11111"
     // const authorizationUrl = `${OIDC_AUTHORIZATION_ENDPOINT}?response_type=code&client_id=${OIDC_CLIENT_ID}&redirect_uri=${OIDC_REDIRECT_URI}&scope=${OIDC_SCOPES}&state=${state}`;
 
     const logoutUrl = `${OIDC_LOGOUT_ENDPOINT}?post_logout_redirect_uri=${OIDC_REDIRECT_URI}&scope=${OIDC_SCOPES}&id_token_hint=${id_token}`;

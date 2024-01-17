@@ -4,7 +4,7 @@
   "description": "Plug-in for single sign-on with Strapi!",
   "strapi": {
     "displayName": "Single Sign On",
-    "name": "strapi-plugin-sso",
+    "name": "strapi-sso-plugin",
     "description": "Version 4 enables single sign-on",
     "kind": "plugin"
   },
@@ -29,14 +29,14 @@
   },
   "author": {
     "name": "hyudoo",
-    "url": "https://github.com/hyudoo/strapi-plugin-sso"
+    "url": "https://github.com/hyudoo/strapi-sso-plugin"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hyudoo/strapi-plugin-sso"
+    "url": "https://github.com/hyudoo/strapi-sso-plugin"
   },
   "bugs": {
-    "url": "https://github.com/hyudoo/strapi-plugin-sso/issues"
+    "url": "https://github.com/hyudoo/strapi-sso-plugin/issues"
   },
   "maintainers": [
     {

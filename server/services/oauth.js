@@ -66,13 +66,13 @@ module.exports = ({ strapi }) => ({
     delete user["password"];
     strapi.eventHub.emit("admin.auth.success", {
       user,
-      provider: "strapi-plugin-sso",
+      provider: "strapi-sso-plugin",
     });
   },
   // Sign In Success
   renderSignUpSuccess(jwtToken, user, nonce) {
     // get REMEMBER_ME from config
-    const config = strapi.config.get("plugin.strapi-plugin-sso");
+    const config = strapi.config.get("plugin.strapi-sso-plugin");
     const REMEMBER_ME = config["REMEMBER_ME"];
 
     let storage = "sessionStorage";

@@ -50,7 +50,7 @@ const HomePage = () => {
 
   useEffect( () => {
     const init = async () => {
-      const ssoRoleResponse = await axios.get(`/strapi-plugin-sso/sso-roles`)
+      const ssoRoleResponse = await axios.get(`/strapi-sso-plugin/sso-roles`)
       setSSORoles(ssoRoleResponse.data)
 
       const roleResponse = await axios.get(`/admin/roles`)
@@ -77,7 +77,7 @@ const HomePage = () => {
   }
   const onClickSave = async () => {
     try {
-      await axios.put('/strapi-plugin-sso/sso-roles', {
+      await axios.put('/strapi-sso-plugin/sso-roles', {
         roles: ssoRoles.map(role => ({
           'oauth_type': role['oauth_type'], role: role['role']
         }))
@@ -96,7 +96,7 @@ const HomePage = () => {
   }
 
   return (
-    <CheckPermissions permissions={[{action: 'plugin::strapi-plugin-sso.read', subject: null}]}>
+    <CheckPermissions permissions={[{action: 'plugin::strapi-sso-plugin.read', subject: null}]}>
       <Helmet title={'Single Sign On'}/>
       <HeaderLayout
         title={'Single Sign On'}
