@@ -1,5 +1,5 @@
 {
-  "name": "@hyudoo/strapi-plugin-sso",
+  "name": "strapi-plugin-sso",
   "version": "0.4.3",
   "description": "Plug-in for single sign-on with Strapi!",
   "strapi": {
