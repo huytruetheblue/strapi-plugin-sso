@@ -74,9 +74,17 @@ module.exports = [
     },
   },
   {
-    method: 'POST',
+    method: 'GET',
     path: '/oidc/logout',
     handler: 'oidc.oidcLogout',
+    config: {
+      auth: false,
+    },
+  },
+  {
+    method: 'GET',
+    path: '/oidc/logout/callback',
+    handler: 'oidc.oidcLogoutCallback',
     config: {
       auth: false,
     },

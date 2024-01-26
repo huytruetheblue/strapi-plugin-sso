@@ -117,9 +117,7 @@ const oidcLogout = async (ctx) => {
   try {
     const { OIDC_SCOPES, OIDC_LOGOUT_ENDPOINT } = configValidation();
     let OIDC_REDIRECT_URI = "http://localhost:1337/strapi-sso-plugin/oidc/logout/callback";
-    // const redirect_uri = "/strapi-sso-plugin/oidc11111"
-    // const authorizationUrl = `${OIDC_AUTHORIZATION_ENDPOINT}?response_type=code&client_id=${OIDC_CLIENT_ID}&redirect_uri=${OIDC_REDIRECT_URI}&scope=${OIDC_SCOPES}&state=${state}`;
-
+   
     const logoutUrl = `${OIDC_LOGOUT_ENDPOINT}?post_logout_redirect_uri=${OIDC_REDIRECT_URI}&scope=${OIDC_SCOPES}&id_token_hint=${id_token}`;
     ctx.redirect(logoutUrl);
   } catch (e) {
@@ -127,8 +125,13 @@ const oidcLogout = async (ctx) => {
   }
 };
 
+const oidcLogoutCallback = async (ctx) => {
+  ctx.redirect('/strapi-sso-plugin/oidc')
+};
+
 module.exports = {
   oidcSignIn,
   oidcSignInCallback,
   oidcLogout,
+  oidcLogoutCallback
 };

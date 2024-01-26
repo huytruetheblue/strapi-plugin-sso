@@ -9,12 +9,14 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import pluginId from '../../pluginId';
 import HomePage from '../HomePage';
+import Logout from '../Logout';
 
 const App = () => {
   return (
     <div>
       <Switch>
         <Route path={`/plugins/${pluginId}`} component={HomePage} exact />
+        <Route path={`/plugins/${pluginId}/logout`} component={Logout} exact />
       </Switch>
     </div>
   );

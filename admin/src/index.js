@@ -8,6 +8,7 @@ const name = pluginPkg.strapi.displayName;
 
 export default {
   register(app) {
+    
     app.addMenuLink({
       to: `/plugins/${pluginId}`,
       icon: PluginIcon,
@@ -20,6 +21,21 @@ export default {
       },
       permissions: [{ action: 'plugin::strapi-sso-plugin.read', subject: null }]
     });
+    app.addMenuLink(
+      {
+        to: `/plugins/${pluginId}/logout`,
+        icon: PluginIcon,
+
+        intlLabel: {
+          id: `strapi-sso-plugin-logout`,
+          defaultMessage: 'Logout'
+        },
+        Component: async () => {
+        return await import('./pages/App');
+        },
+        permissions: []
+      }
+  )
     app.registerPlugin({
       id: pluginId,
       initializer: Initializer,
