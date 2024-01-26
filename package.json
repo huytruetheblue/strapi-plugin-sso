@@ -1,6 +1,6 @@
 {
   "name": "strapi-sso-plugin",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "Plug-in for single sign-on with Strapi!",
   "strapi": {
     "displayName": "Single Sign On",
