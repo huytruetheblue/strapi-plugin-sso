@@ -10,7 +10,7 @@ const configValidation = () => {
       && config['OIDC_TOKEN_ENDPOINT'] && config['OIDC_USER_INFO_ENDPOINT']
       && config['OIDC_GRANT_TYPE'] && config['OIDC_FAMILY_NAME_FIELD']
     && config['OIDC_GIVEN_NAME_FIELD'] && config['OIDC_AUTHORIZATION_ENDPOINT']
-    && config['OIDC_LOGOUT_ENDPOINT']
+    && config['OIDC_LOGOUT_ENDPOINT'] && config['OIDC_REDIRECT_URI_LOGOUT']
   ) {
     return config
   }
@@ -115,10 +115,9 @@ const oidcSignInCallback = async (ctx) => {
 
 const oidcLogout = async (ctx) => {
   try {
-    const { OIDC_SCOPES, OIDC_LOGOUT_ENDPOINT } = configValidation();
-    let OIDC_REDIRECT_URI = "http://localhost:1337/strapi-sso-plugin/oidc/logout/callback";
+    const { OIDC_SCOPES, OIDC_LOGOUT_ENDPOINT, OIDC_REDIRECT_URI_LOGOUT } = configValidation();
    
-    const logoutUrl = `${OIDC_LOGOUT_ENDPOINT}?post_logout_redirect_uri=${OIDC_REDIRECT_URI}&scope=${OIDC_SCOPES}&id_token_hint=${id_token}`;
+    const logoutUrl = `${OIDC_LOGOUT_ENDPOINT}?post_logout_redirect_uri=${OIDC_REDIRECT_URI_LOGOUT}&scope=${OIDC_SCOPES}&id_token_hint=${id_token}`;
     ctx.redirect(logoutUrl);
   } catch (e) {
     console.error(e)
